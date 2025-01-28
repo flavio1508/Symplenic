@@ -1,62 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
-import { FaSearch, FaUser, FaFileAlt, FaClipboardCheck, FaPlus, FaBell } from "react-icons/fa";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
-import logo from '../img/WhatsApp Image 2025-01-24 at 00.39.45.jpeg';  // Importando a imagem
+import { FaSearch, FaUser, FaFileAlt, FaClipboardCheck, FaPlus, FaBell, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-
-const mockUser = {
-  email: "flavio1508@gmail.com",
-  password: "1234",
-  name: "Flávio Augusto",
-};
-
-function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
   
-    const handleLogin = () => {
-      if (email === mockUser.email && password === mockUser.password) {
-        localStorage.setItem("user", JSON.stringify(mockUser));
-        navigate("/dashboard");
-      } else {
-        setError("Email ou senha incorretos!");
-      }
-    };
-  
-    return (
-      <div className="login-container">
-        <div className="login-box">
-        <div className="login-logo">
-          <img src={logo} alt="Logo" className="logo-image" />
-        </div>
-          <h1 className="login-title">Login</h1>
-          {error && <p className="login-error">{error}</p>}
-          <input
-            type="email"
-            placeholder="Email"
-            className="login-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            className="login-input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="login-button" onClick={handleLogin}>
-            Entrar
-          </button>
-        </div>
-      </div>
-    );
-  }
-  
-
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,6 +13,8 @@ const Dashboard = () => {
   const itemsPerPage = 9;
 
   const user = JSON.parse(localStorage.getItem("user"));
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
@@ -114,11 +63,16 @@ const Dashboard = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <h1>Simplus</h1>
+      <nav className="sidebar">
+        <h1>Simple</h1>
         <ul>
           <li>
             <FaUser /> Profile: {user?.name}
@@ -135,8 +89,11 @@ const Dashboard = () => {
           <li>
             <FaBell /> Notification
           </li>
+          <li className='logout' onClick={handleLogout}>
+            <FaSignOutAlt/> Logout
+          </li>
         </ul>
-      </aside>
+      </nav>
 
       {/* Main Content */}
       <main className="main-content">
@@ -215,15 +172,4 @@ const Dashboard = () => {
   );
 };
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
+export default Dashboard;

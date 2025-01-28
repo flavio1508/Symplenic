@@ -1,5 +1,5 @@
 import React from 'react';
-import { exportToExcel, exportToPDF } from '../utils/exportUtils';
+import { exportToExcel, exportToPDF } from '../../utils/exportUtils';
 
 const mockReportData = [
   { name: 'Company A', approved: 10, rejected: 2 },
