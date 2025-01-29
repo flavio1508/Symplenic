@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
-import { FaSearch, FaUser, FaFileAlt, FaClipboardCheck, FaPlus, FaBell, FaSignOutAlt } from "react-icons/fa";
+import { FaSearch, FaUser, FaFileAlt, FaClipboardCheck, FaPlus, FaBell, FaSignOutAlt, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
   
@@ -19,6 +19,9 @@ const Dashboard = () => {
   useEffect(() => {
     if (!user) {
       window.location.href = "/";
+    } else {
+      const savedProjects = JSON.parse(localStorage.getItem(`projects_${user.email}`)) || [];
+      setProjects(savedProjects);
     }
   }, [user]);
 
@@ -31,21 +34,26 @@ const Dashboard = () => {
   };
 
   const handleSaveProject = () => {
-    if (newProject.name && newProject.description) {
+    if (newProject.name && newProject.description && newProject.startDate) {
       const newProjectObj = { id: projects.length + 1, ...newProject };
-      setProjects([...projects, newProjectObj]);
+      const updatedProjects = [...projects, newProjectObj];
+      setProjects(updatedProjects);
+      localStorage.setItem(`projects_${user.email}`, JSON.stringify(updatedProjects));
       setIsModalOpen(false);
       setNewProject({ name: "", description: "" });
     }
   };
 
   const handleDeleteProject = (id) => {
+    const updatedProjects = projects.filter((project) => project.id !== id);
     setProjects(projects.filter((project) => project.id !== id));
+    localStorage.setItem(`projects_${user.email}`, JSON.stringify(updatedProjects));
+
   };
 
   const handleEditProject = (id) => {
     const projectToEdit = projects.find((project) => project.id === id);
-    setNewProject({ name: projectToEdit.name, description: projectToEdit.description });
+    setNewProject({ name: projectToEdit.name, description: projectToEdit.description, startDate: projectToEdit.startDate });
     setIsModalOpen(true);
     handleDeleteProject(id);
   };
@@ -122,20 +130,30 @@ const Dashboard = () => {
         {isModalOpen && (
           <div className="modal-overlay">
             <div className="modal">
-              <h2 className="text-xl font-bold mb-4">Novo Projeto</h2>
+              <h2 className="text-xl font-bold mb-4">New Project</h2>
               <input
+                className="nameProejct"
                 type="text"
-                placeholder="Nome do Projeto"
+                placeholder="Name of Project"
                 value={newProject.name}
                 onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
               />
               <textarea
-                placeholder="Descrição do Projeto"
+                className="descriptionProject"
+                placeholder="Description of Project"
                 value={newProject.description}
                 onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
               />
-              <button onClick={handleSaveProject}>Salvar</button>
-              <button onClick={handleModalClose} className="mt-2">Cancelar</button>
+              <input
+              className="date_in"
+                type="date"
+                placeholder="Date of Start"
+                value={newProject.startDate}
+                onChange={(e) => setNewProject({ ...newProject, startDate: e.target.value })}
+                
+              />
+              <button className='save_button' onClick={handleSaveProject}>Save</button>
+              <button className='cancel_button' onClick={handleModalClose}>Cancel</button>
             </div>
           </div>
         )}
@@ -147,9 +165,10 @@ const Dashboard = () => {
               <div className="project-card-header"></div>
               <h3>{project.name}</h3>
               <p>{project.description}</p>
+              <p>Date of Start: {project.startDate}</p>
               <div className="card-options">
-                <span onClick={() => handleEditProject(project.id)}>Editar</span>
-                <span onClick={() => handleDeleteProject(project.id)}>Excluir</span>
+                <span onClick={() => handleEditProject(project.id)}>Edit</span>
+                <span onClick={() => handleDeleteProject(project.id)}>Delete</span>
               </div>
             </div>
           ))}
@@ -158,13 +177,14 @@ const Dashboard = () => {
         {/* Pagination */}
         <div className="pagination">
           <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-            <i className="fa fa-arrow-left"></i>
+            <FaAngleLeft style={{fontSize:'16px'}}/>
           </button>
+          <span style={{fontSize:'26px', border:'1px solid #ccc'}}>{currentPage}</span>
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage * itemsPerPage >= filteredProjects.length}
           >
-            <i className="fa fa-arrow-right"></i>
+            <FaAngleRight style={{fontSize:'16px'}} />
           </button>
         </div>
       </main>
