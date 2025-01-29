@@ -110,6 +110,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+}
+body, html {
+  overflow: hidden;
 }
 
 .modal {
@@ -117,6 +121,7 @@
   padding: 2rem;
   border-radius: 0.5rem;
   width: 400px;
+  z-index: 1001;
 }
 
 .modal input,
@@ -128,17 +133,44 @@
   border: 1px solid #e5e7eb;
 }
 
-.modal button {
-  background-color: #6b46c1;
+.save_button {
+  background-color: #288330;
   color: white;
   padding: 0.75rem;
-  border-radius: 0.375rem;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
+  margin-left: 260px;
+  width: 16%;
 }
 
-.modal button:hover {
-  background-color: #4c2a91;
+.cancel_button {
+  background-color: #d30505;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  width: 16%;
+}
+
+.save_button:hover{
+  background-color: #37ac41cc;
+}
+.cancel_button:hover {
+  background-color: #e95159;
+}
+.nameProejct{
+  margin-left: -12px;
+}
+
+.descriptionProject{
+  margin-left: -12px;
+}
+
+.date_in{
+  margin-left: -12px;
 }
 
 /* Estilo do card */
@@ -152,7 +184,7 @@
 }
 
 .project-card-header {
-  background-color: #6b46c1; /* Cor da barra lateral */
+  background-color: #999898; /* Cor da barra lateral */
   height: 4px;
   margin-bottom: 1rem;
 }
@@ -197,7 +229,7 @@
 }
 
 .pagination button {
-  background-color: #6b46c1;
+  background-color: #CCC;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -206,7 +238,7 @@
 }
 
 .pagination button:hover {
-  background-color: #4c2a91;
+  background-color: #5c5c5c;
 }
 
 .pagination i {
@@ -215,4 +247,10 @@
 .logout{
   position: absolute;
   margin-top: 120%;
+}
+
+.text-xl{
+  color: #000;
+  font-size: Arial, sans-serif;
+  margin-top: -12px; 
 }
