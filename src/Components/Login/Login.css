@@ -1,0 +1,82 @@
+/* Adicione isso ao seu arquivo CSS, se necessário */
+.login-container {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+  /* Container geral */
+  .login-container {
+    background-image: url('../../img/contruct 1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96vh;
+    width: 100%;
+  }
+  
+  
+  /* Caixa de login */
+  .login-box {
+    background-color: rgba(206, 206, 206, 0.68); /* Cinza com opacidade */
+    padding: 2rem;
+    border-radius: 1rem; /* Bordas arredondadas */
+    width: 400px;
+    text-align: center;
+    border-radius: 20px;
+    height: 455px;
+  }
+  
+  
+  /* Mensagem de erro */
+  .login-error {
+    color: #e53e3e; /* Vermelho para erro */
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Inputs */
+  .login-input {
+    width: 90%;
+    padding: 0.85rem;
+    margin-left: -2%;
+    margin-bottom: 4rem;
+    border: none;
+    border-radius: 20px; /* Bordas arredondadas */
+    outline: none;
+    font-size: 22px;
+  }
+  
+  /* Botão de login */
+  .login-button {
+    width: 96%;
+    background-color: #000000; /* Cor lilás da barra lateral */
+    color: white;
+    margin-left: -2%;
+    padding: 0.85rem;
+    margin-top: -1%;
+    border-radius: 20px; /* Bordas arredondadas */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 22px;
+  }
+  
+  .login-button:hover {
+    background-color: #4B4848; /* Cor lilás escura */
+  }
+  
+  .login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo-image {
+    width: 34%;  /* Tamanho da largura */
+    height: 34%;  /* Tamanho da altura */
+    border-radius: 50%;  /* Deixa a imagem arredondada */
+    object-fit: cover;  /* Garante que a imagem preencha o espaço sem distorcer */
+  }
+  
+  

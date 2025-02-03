@@ -1,0 +1,274 @@
+/* Estilo da barra lateral */
+.sidebar {
+  width: 100%;
+  max-width: 14rem;
+  background-color: rgba(206, 206, 206, 1); /* Cinza*/
+  color: white;
+  padding: 1rem;
+  height: 100vh;
+  position: fixed;
+  top:0;
+  left: 0;
+}
+
+.sidebar h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar ul li:hover {
+  color: #4B4848;
+}
+
+.sidebar ul li i {
+  margin-right: 0.5rem;
+}
+
+/* Estilo do conteúdo principal */
+.main-content {
+  flex: 1;
+  padding: 5.5rem;
+  margin-left: 16rem; /* Barra lateral fixa */
+  height: 100vh; /* Garante que o conteúdo ocupe toda a altura da tela */
+  overflow-y: auto;
+}
+
+/* Header - botão novo projeto */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo do botão Novo Projeto */
+.new-project-btn {
+  background-color: #ccc; /* Cor da barra lateral */
+  color: #000000;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  border-radius: 50px; /* Deixa o botão mais arredondado */
+  transition: background-color 0.3s;
+  border:none;
+}
+
+.new-project-btn:hover {
+  background-color: #5c5c5c; /* Cor mais escura da barra lateral */
+  color:#fff;
+}
+
+/* Busca */
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding-left: 0.5rem;
+  width: 200px;
+}
+
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+}
+
+
+/* Modal de novo projeto */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+body, html {
+  overflow: hidden;
+}
+
+.modalProject {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 400px;
+  z-index: 1001;
+}
+
+.modalProject input,
+.modalProject textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+}
+
+.save_button {
+  background-color: #288330;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-left: 260px;
+  width: 16%;
+}
+
+.cancel_button {
+  background-color: #d30505;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  width: 16%;
+}
+
+.save_button:hover{
+  background-color: #37ac41cc;
+}
+.cancel_button:hover {
+  background-color: #e95159;
+}
+.nameProejct{
+  margin-left: -12px;
+}
+
+.descriptionProject{
+  margin-left: -12px;
+}
+
+.date_in{
+  margin-left: -12px;
+}
+
+/* Estilo do card */
+.projectCard {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.projectCardHeader {
+  background-color: #999898; /* Cor da barra lateral */
+  height: 4px;
+  margin-bottom: 1rem;
+}
+
+.cardOptions {
+  margin-top: 90px;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.projectCard:hover .card-options {
+  display: block;
+}
+
+.cardOptions span {
+  margin-left: 0.5rem;
+}
+
+.projectCard h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.projectCard p {
+  color: #4b5563;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination button {
+  background-color: #CCC;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #5c5c5c;
+}
+
+.pagination i {
+  margin-right: 0.5rem;
+}
+.logout{
+  position: absolute;
+  margin-top: 100%;
+}
+
+.text-xl{
+  color: #000;
+  font-size: Arial, sans-serif;
+  margin-top: -12px; 
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
